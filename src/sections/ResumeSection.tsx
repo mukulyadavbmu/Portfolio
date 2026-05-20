@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { SectionWrapper, SectionHeader } from "@/components/ui/SectionUI";
 import { FiDownload, FiExternalLink } from "react-icons/fi";
+import { getAssetPath } from "@/lib/paths";
 
 export default function ResumeSection() {
     return (
@@ -27,7 +28,7 @@ export default function ResumeSection() {
                     style={{ height: "500px" }}
                 >
                     <iframe
-                        src="/MUKUL_YADAV_BMU.pdf"
+                        src={getAssetPath("/MUKUL_YADAV_BMU.pdf")}
                         className="w-full h-full"
                         title="Mukul Yadav Resume"
                         aria-label="Resume preview"
@@ -49,7 +50,7 @@ export default function ResumeSection() {
                     className="flex flex-wrap items-center justify-center gap-4"
                 >
                     <a
-                        href="/MUKUL_YADAV_BMU.pdf"
+                        href={getAssetPath("/MUKUL_YADAV_BMU.pdf")}
                         download="Mukul_Yadav_Resume.pdf"
                         className="inline-flex items-center gap-2 px-8 py-3 rounded-lg bg-[var(--accent-blue)] text-white font-semibold text-sm hover:bg-blue-400 transition-colors duration-200 shadow-lg shadow-blue-500/20"
                     >
@@ -57,7 +58,7 @@ export default function ResumeSection() {
                         Download Resume
                     </a>
                     <a
-                        href="/MUKUL_YADAV_BMU.pdf"
+                        href={getAssetPath("/MUKUL_YADAV_BMU.pdf")}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-8 py-3 rounded-lg bg-[var(--bg-card)] text-[var(--text-secondary)] font-semibold text-sm border border-[var(--border)] hover:text-white hover:border-[var(--accent-blue)]/50 transition-all duration-200"

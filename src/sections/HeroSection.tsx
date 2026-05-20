@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { FiDownload, FiGithub, FiLinkedin } from "react-icons/fi";
 import Link from "next/link";
+import { getAssetPath } from "@/lib/paths";
 
 export default function HeroSection() {
   return (
@@ -99,7 +100,7 @@ export default function HeroSection() {
             <FiLinkedin size={20} /> LinkedIn
           </a>
           <a
-            href="/MUKUL_YADAV_BMU.pdf"
+            href={getAssetPath("/MUKUL_YADAV_BMU.pdf")}
             download
             className="px-8 py-4 rounded border border-[var(--text-secondary)] text-[var(--text-secondary)] font-bold hover:bg-[var(--text-secondary)] hover:text-[#121212] transition-colors flex items-center gap-2"
           >

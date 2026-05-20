@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { FiGithub, FiMail, FiLinkedin, FiDownload } from "react-icons/fi";
 import { track } from "@/lib/analytics";
+import { getAssetPath } from "@/lib/paths";
 
 export default function HomeCTASection() {
   return (
@@ -27,9 +28,9 @@ export default function HomeCTASection() {
           <FiMail size={20} /> Say Hello
         </a>
         <a
-          href="/MUKUL_YADAV_BMU.pdf"
+          href={getAssetPath("/MUKUL_YADAV_BMU.pdf")}
           download
-          onClick={() => track({ name: "resume_download", params: { context: "cta" } })}
+          onClick={() => track({ name: "resume_download", params: { method: "download" } })}
           className="px-8 py-4 rounded bg-[var(--accent-green)]/10 border border-[var(--accent-green)] text-[var(--accent-green)] font-bold font-mono hover:bg-[var(--accent-green)] hover:text-[#121212] transition-colors flex items-center gap-2"
         >
           <FiDownload size={20} /> Resume

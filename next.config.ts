@@ -1,37 +1,10 @@
 import type { NextConfig } from "next";
 
 const isGithubPages = process.env.GITHUB_ACTIONS === "true";
+// Set to "" if you are deploying to a custom domain or user page (mukulyadavbmu.github.io)
+// Otherwise, set to your GitHub repository name (e.g., "Portfolio")
 const repoName = "Portfolio";
-
-// ── Security Headers ─────────────────────────────────────────
-// These apply when running `next dev` or `next start`.
-// For static export (GitHub Pages), set these in vercel.json or _headers.
-const securityHeaders = [
-  {
-    key: "X-DNS-Prefetch-Control",
-    value: "on",
-  },
-  {
-    key: "X-Frame-Options",
-    value: "DENY",
-  },
-  {
-    key: "X-Content-Type-Options",
-    value: "nosniff",
-  },
-  {
-    key: "Referrer-Policy",
-    value: "strict-origin-when-cross-origin",
-  },
-  {
-    key: "Permissions-Policy",
-    value: "camera=(), microphone=(), geolocation=()",
-  },
-  {
-    key: "X-XSS-Protection",
-    value: "1; mode=block",
-  },
-];
+const basePath = isGithubPages ? `/${repoName}` : "";
 
 const nextConfig: NextConfig = {
   output: "export",
@@ -42,22 +15,17 @@ const nextConfig: NextConfig = {
   },
 
   trailingSlash: true,
-  basePath: isGithubPages ? `/${repoName}` : "",
-  assetPrefix: isGithubPages ? `/${repoName}/` : "",
-
-  // Security headers (effective in dev + next start; not in static export)
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: securityHeaders,
-      },
-    ];
-  },
+  basePath: basePath,
+  assetPrefix: basePath ? `${basePath}/` : "",
 
   // Explicitly mark known external packages as server-only
   // so they are never accidentally bundled into client JS
   serverExternalPackages: ["gray-matter"],
+
+  // Inject env variables at build-time for client-side and server-side code
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
 };
 
 export default nextConfig;

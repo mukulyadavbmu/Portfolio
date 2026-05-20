@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { FiDownload, FiExternalLink } from "react-icons/fi";
 import { track } from "@/lib/analytics";
+import { getAssetPath } from "@/lib/paths";
 
 export default function ResumePageContent() {
   // Track that the resume page was viewed
@@ -41,7 +42,7 @@ export default function ResumePageContent() {
         >
           {/* Download — fires resume_download event */}
           <a
-            href="/MUKUL_YADAV_BMU.pdf"
+            href={getAssetPath("/MUKUL_YADAV_BMU.pdf")}
             download="Mukul_Yadav_Resume.pdf"
             onClick={() =>
               track({ name: "resume_download", params: { method: "download" } })
@@ -54,7 +55,7 @@ export default function ResumePageContent() {
 
           {/* Open in new tab — fires resume_view event */}
           <a
-            href="/MUKUL_YADAV_BMU.pdf"
+            href={getAssetPath("/MUKUL_YADAV_BMU.pdf")}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() =>
@@ -76,7 +77,7 @@ export default function ResumePageContent() {
           style={{ height: "80vh", minHeight: "600px" }}
         >
           <iframe
-            src="/MUKUL_YADAV_BMU.pdf"
+            src={getAssetPath("/MUKUL_YADAV_BMU.pdf")}
             className="w-full h-full rounded-lg"
             title="Mukul Yadav Resume"
           />
