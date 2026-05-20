@@ -1,0 +1,117 @@
+---
+title: "VulnForge"
+description: "Automated dynamic analysis (DAST) and security testing platform utilizing Playwright for deep network interception and crawling."
+ogImage: "/images/vulnforge-og.png"
+keywords: ["DAST", "Vulnerability Scanner", "Playwright", "TypeScript", "Pentesting"]
+role: "Security Engineer / Creator"
+oneLineImpact: "Built an automated security testing platform that dynamically identifies 11+ vulnerability classes through intelligent crawling."
+coreStack: ["TypeScript", "React", "Playwright", "Node.js"]
+keyFocus: "Automated DAST & Network Interception"
+deploymentStatus: "Production-ready MVP"
+repoLinks: 
+  - { label: "GitHub", url: "https://github.com/mukulyadavbmu/VULNFORGE" }
+demoLinks: []
+---
+
+## Why this project matters
+
+VulnForge transitions vulnerability scanning from static signatures to dynamic, behavior-based execution. Traditional scanners often miss DOM-based vulnerabilities or modern SPA (Single Page Application) routing. By utilizing a real browser engine (Playwright), VulnForge interacts with modern web applications exactly as a user would, enabling the discovery of complex attack surfaces.
+
+**Resume Mapping:**
+- **Security Engineering:** DAST architecture, dynamic payload injection, threat modeling.
+- **Backend/Systems:** Playwright automation, network interception, concurrent scraping.
+
+---
+
+## Problem & Motivation
+
+Modern web applications are highly dynamic, rendering DOM nodes conditionally and relying on complex API state. Standard security scanners (like `gobuster` or traditional headless python scripts) struggle to map the attack surface of these SPAs. My motivation was to build a tool that understands JavaScript execution contexts, intercepts raw network requests across the wire, and autonomously identifies vulnerabilities like CORS misconfigurations, IDOR, and XSS.
+
+---
+
+## Architecture
+
+The system operates on a decoupled architecture, separating the crawling engine from the vulnerability analysis module.
+
+1. **Reconnaissance Engine:** Playwright drives headless Chromium, mapping the site structure and clicking interactive elements.
+2. **Network Interceptor:** A proxy layer hooks into `page.on('request')` and `page.on('response')` to capture all headers, parameters, and bodies.
+3. **Analyzer Pipeline:** Captured requests are routed through modular vulnerability analyzers (SQLi, XSS, SSRF).
+
+---
+
+## Implementation Details
+
+### Backend & Scanning Engine
+The core scanning engine is built in **TypeScript** using **Node.js**. I heavily relied on Playwright's `route` interception to modify outgoing requests dynamically, injecting malicious payloads into parameters and headers on the fly, without needing a standalone proxy server like Burp Suite.
+
+### Frontend Implementation
+The frontend uses React to provide a real-time dashboard of discovered endpoints and active vulnerabilities. It connects via WebSockets to stream scanning logs and progress to the user, ensuring the UI remains responsive during long-running intensive scans.
+
+### Security Implementation (Analyzers)
+Each analyzer implements a common interface. For example, the CORS analyzer doesn't just look for `Access-Control-Allow-Origin: *`. It actively sends `Origin: https://evil.com` and verifies if the server echoes the malicious origin and includes `Access-Control-Allow-Credentials: true`, which is a critical misconfiguration.
+
+---
+
+## Threat Model / Attack Surface
+
+By building a security tool, the tool itself becomes an attack surface. 
+- **Server-Side Request Forgery (SSRF):** If a user can force the scanner to target internal network addresses (e.g., `169.254.169.254`), the scanner becomes a pivot point. We implemented strict CIDR blocklisting to prevent the scanner from resolving internal IPs.
+- **Malicious Target Sites:** Target applications could attempt browser exploitation against the headless Chromium instance. We mitigated this by disabling unnecessary browser features and running the execution environment in a restricted sandbox.
+
+---
+
+## API Design
+
+The backend exposes a REST API for starting/stopping scans, retrieving realtime logs, and exporting reports. I utilized a job-queue pattern where initiating a scan returns a `scanId`, and the client polls or connects via WebSocket for updates. This prevents long-running HTTP requests from timing out.
+
+---
+
+## Scalability Considerations
+
+A single Playwright context consumes significant RAM. To scale VulnForge:
+- **Concurrency:** We limit active browser tabs (workers) using a semaphore pattern to prevent out-of-memory (OOM) crashes.
+- **Distributed Processing:** The architecture is designed so that the analyzer pipeline can be split from the crawler. Future iterations can push network logs to a message broker (RabbitMQ/Kafka) where multiple lightweight worker nodes analyze the data concurrently.
+
+---
+
+## Observability & Logging
+
+- **Logging:** All network interceptions and errors are logged using structured JSON (Winston/Pino), making it easy to parse in ELK/Datadog.
+- **Debugging:** Added verbose debugging modes (`DEBUG=vulnforge:*`) to track the exact payload mutations and the server's raw byte response.
+
+---
+
+## Testing Strategy
+
+- **Unit Testing:** Individual analyzers are tested against mock HTTP responses to ensure true positive detection without false positives.
+- **Integration Testing:** We utilize a deliberately vulnerable local web app (similar to Juice Shop) to run full end-to-end (E2E) scans in the CI pipeline, ensuring regressions don't break detection logic.
+
+---
+
+## Tradeoffs, Failure Cases & Limitations
+
+- **Speed vs. Coverage:** Driving a real browser is inherently slower than raw HTTP requests. For static assets, we fallback to raw HTTP, saving browser contexts for dynamic execution.
+- **WAF Interference:** Aggressive crawling triggers Web Application Firewalls (WAF). The current MVP does not have advanced WAF evasion (like randomized user-agents or human-like mouse movements), which limits its effectiveness against heavily protected enterprise targets.
+
+---
+
+## Measurable Results
+
+- **Coverage:** Successfully maps and intercepts 100% of XHR/Fetch requests on modern React/Vue SPAs, a significant improvement over static crawling.
+- **Extensibility:** The modular analyzer system allows writing a new vulnerability check in under 50 lines of code.
+
+---
+
+## Timeline, Lessons Learned, & Future Improvements
+
+**Timeline:** Built the MVP over 4 weeks.
+**Lessons Learned:** Managing asynchronous browser states is incredibly complex. Dealing with hanging promises when a target site times out required implementing strict global timeouts and promise racing.
+**What I'd do with more time:** Implement a machine learning classifier to identify login forms and automatically handle authentication flows, allowing for authenticated DAST scanning.
+
+---
+
+## Interview Discussion Points
+
+- **Tradeoff Discussion:** "Why use Playwright instead of a fast HTTP library like Axios or Go's `net/http`?"
+- **Deep Dive:** How do you safely execute untrusted JavaScript in a headless environment?
+- **System Design:** How would you scale this to scan 10,000 domains concurrently?

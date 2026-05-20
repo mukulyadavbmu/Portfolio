@@ -14,7 +14,6 @@ export default function AllProjectsContent({
   return (
     <div className="min-h-screen pt-28 pb-24">
       <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -25,22 +24,19 @@ export default function AllProjectsContent({
             Projects
           </span>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Selected work.
+            Security & Engineering Work.
           </h1>
           <p className="text-[var(--text-secondary)] max-w-xl leading-relaxed">
-            A complete view of the projects I&apos;ve built. Each one explores a
-            different engineering area through practical implementation.
+            A comprehensive look at my work in application security, automated testing, and backend architecture.
           </p>
         </motion.div>
 
-        {/* Grid */}
         <div className="grid sm:grid-cols-2 gap-6">
           {projects.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
         </div>
 
-        {/* GitHub CTA */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

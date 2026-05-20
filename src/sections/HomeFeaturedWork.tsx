@@ -1,32 +1,34 @@
 "use client";
 
 import Link from "next/link";
-import { SectionWrapper, SectionHeader } from "@/components/ui/SectionUI";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { projects } from "@/data/projects";
 import { motion } from "framer-motion";
-import { FiArrowRight } from "react-icons/fi";
 
 // Show only the 2 primary + 1 optional on home
-const featuredIds = ["vulnforge", "aether", "plant-disease"];
+const featuredIds = ["sandhawk", "vulnforge", "eduvora"];
 const featuredProjects = projects.filter((p) => featuredIds.includes(p.id));
 
 export default function HomeFeaturedWork() {
   return (
-    <SectionWrapper id="work" className="bg-[var(--bg-surface)]/30">
-      <SectionHeader
-        label="Selected Work"
-        title="A few things I've built."
-        subtitle="Projects that helped me understand different areas of engineering through practical implementation."
-      />
+    <section id="work" className="py-24 max-w-6xl mx-auto px-6">
+      <h2 className="cyber-section-heading text-4xl font-bold mb-12 font-mono">Featured Projects</h2>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
         {featuredProjects.map((project, i) => (
-          <ProjectCard key={project.id} project={project} index={i} />
+          <motion.div
+            key={project.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: i * 0.1 }}
+            className="h-full"
+          >
+            <ProjectCard project={project} index={i} />
+          </motion.div>
         ))}
       </div>
 
-      {/* View all link */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -36,15 +38,11 @@ export default function HomeFeaturedWork() {
       >
         <Link
           href="/work"
-          className="inline-flex items-center gap-2 text-sm font-medium text-[var(--text-secondary)] hover:text-white group transition-colors duration-200"
+          className="px-8 py-3 rounded border border-[var(--border)] text-[var(--text-secondary)] font-mono hover:text-[var(--accent-green)] hover:border-[var(--accent-green)] hover:bg-[var(--accent-green)]/10 transition-all shadow-[0_0_15px_rgba(0,255,140,0)] hover:shadow-[0_0_15px_rgba(0,255,140,0.2)]"
         >
-          View a few more projects
-          <FiArrowRight
-            size={14}
-            className="group-hover:translate-x-1 transition-transform duration-200"
-          />
+          &gt; View All Projects _
         </Link>
       </motion.div>
-    </SectionWrapper>
+    </section>
   );
 }

@@ -1,48 +1,33 @@
 export interface SkillCategory {
-    title: string;
-    skills: string[];
+  title: string;
+  skills: string[];
 }
 
 export const skillCategories: SkillCategory[] = [
-    {
-        title: "Core Languages",
-        skills: ["Java", "JavaScript", "TypeScript", "C++", "Python"],
-    },
-    {
-        title: "Frameworks & Libraries",
-        skills: ["React", "React Native", "Next.js", "NestJS", "Node.js"],
-    },
-    {
-        title: "Tools & Platforms",
-        skills: ["Git", "Linux", "Firebase", "Supabase", "Playwright"],
-    },
-    {
-        title: "Domains",
-        skills: [
-            "Machine Learning",
-            "Web Security",
-            "REST APIs",
-            "Computer Vision",
-            "System Design",
-        ],
-    },
+  {
+    title: "Application Security & Testing",
+    skills: ["Vulnerability Analysis", "SQLi/XSS/IDOR", "Automated Crawling", "Playwright", "Threat Investigation"],
+  },
+  {
+    title: "Backend & Architecture",
+    skills: ["Node.js", "FastAPI", "REST API Design", "System Architecture", "PostgreSQL", "Supabase"],
+  },
+  {
+    title: "Core Languages",
+    skills: ["TypeScript", "Python", "C++", "Java", "JavaScript"],
+  },
+  {
+    title: "Infrastructure & Tools",
+    skills: ["Docker", "Git", "Linux", "CI/CD fundamentals"],
+  },
 ];
 
 export const techStrip: string[] = [
-    "Java",
-    "JavaScript",
-    "TypeScript",
-    "C++",
-    "Python",
-    "React",
-    "NestJS",
-    "Firebase",
-    "Git",
-    "Linux",
-];
-
-export const currentlyExploring: string[] = [
-    "Backend system design and scalable architecture patterns",
-    "Web security fundamentals and vulnerability analysis",
-    "Building full-stack applications end-to-end",
+  "TypeScript",
+  "Python",
+  "C++",
+  "FastAPI",
+  "Playwright",
+  "Docker",
+  "Linux",
 ];

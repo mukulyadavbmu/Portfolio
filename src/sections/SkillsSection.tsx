@@ -2,76 +2,39 @@
 
 import { motion } from "framer-motion";
 import { SectionWrapper, SectionHeader } from "@/components/ui/SectionUI";
-
-const primarySkills = [
-  "Java",
-  "JavaScript",
-  "C++",
-  "React",
-  "Node.js",
-  "Git",
-  "Linux",
-];
-
-const secondarySkills = [
-  "TypeScript",
-  "NestJS",
-  "Firebase",
-  "Supabase",
-  "Playwright",
-  "Python",
-  "ML tools",
-];
+import { skillCategories } from "@/data/skills";
 
 export default function SkillsSection() {
   return (
     <SectionWrapper id="skills">
-      <SectionHeader label="Skills" title="What I work with." />
+      <SectionHeader label="Technical Stack" title="Core Competencies." />
 
-      <div className="space-y-8">
-        {/* Primary */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h3 className="text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-3">
-            Core
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {primarySkills.map((skill) => (
-              <span
-                key={skill}
-                className="px-3 py-1.5 rounded-md text-sm font-medium bg-[var(--bg-card)] text-white border border-[var(--border)] hover:border-[var(--accent-blue)]/50 transition-colors duration-200"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Secondary */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          <h3 className="text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-3">
-            Also used in projects
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {secondarySkills.map((skill) => (
-              <span
-                key={skill}
-                className="px-3 py-1.5 rounded-md text-sm font-medium bg-[var(--bg-surface)] text-[var(--text-muted)] border border-[var(--border-subtle)] hover:text-[var(--text-secondary)] transition-colors duration-200"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </motion.div>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+        {skillCategories.map((category, catIdx) => (
+          <motion.div
+            key={category.title}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: catIdx * 0.1 }}
+            className="flex flex-col"
+          >
+            <h3 className="text-xs font-mono tracking-widest text-[var(--accent-blue)] mb-5 uppercase border-b border-[var(--border-subtle)] pb-2">
+              {category.title}
+            </h3>
+            <ul className="flex flex-col gap-3">
+              {category.skills.map((skill) => (
+                <li
+                  key={skill}
+                  className="flex items-start gap-2 text-sm text-[var(--text-secondary)]"
+                >
+                  <span className="text-[var(--accent-blue)] font-mono text-xs mt-0.5">&gt;</span>
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        ))}
       </div>
     </SectionWrapper>
   );

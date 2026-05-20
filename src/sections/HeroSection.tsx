@@ -1,121 +1,110 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FiDownload, FiGithub, FiArrowDown } from "react-icons/fi";
+import { FiDownload, FiGithub, FiLinkedin } from "react-icons/fi";
 import Link from "next/link";
 
 export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden"
     >
-      {/* Animated dot grid background */}
-      <div className="absolute inset-0 dot-grid opacity-60" />
-
-      {/* Glowing orbs */}
-      <div className="orb orb-blue absolute w-96 h-96 -top-20 -left-20" />
-      <div className="orb orb-purple absolute w-80 h-80 -bottom-20 -right-20" />
-
-      {/* Gradient overlay at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[var(--bg-primary)] to-transparent pointer-events-none" />
-
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-        {/* Status badge */}
-        {/* <motion.div
-          initial={{ opacity: 0, y: 16 }}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 flex flex-col items-center justify-center text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--bg-card)] border border-[var(--border)] text-xs text-[var(--text-secondary)] mb-8"
+          transition={{ duration: 0.6 }}
+          className="inline-block border border-[var(--accent-green)] px-4 py-2 rounded-md bg-black/50 text-[var(--accent-green)] text-sm mb-8"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-          Open to internship opportunities
-        </motion.div> */}
+          // security_engineer / appsec
+        </motion.div>
 
-        {/* Name */}
         <motion.h1
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-5 leading-none"
+          className="text-5xl md:text-7xl font-bold mb-4 font-mono gradient-text"
         >
-          Mukul <span className="gradient-text">Yadav</span>
+          MUKUL YADAV <small className="text-xl md:text-2xl text-[var(--text-muted)] font-normal inline-block ml-2">(mukulyadav)</small>
         </motion.h1>
 
-        {/* Tagline */}
         <motion.p
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg md:text-xl text-[var(--text-secondary)] max-w-xl mx-auto mb-3 leading-relaxed"
+          className="text-lg md:text-2xl text-gray-400 mb-12 max-w-2xl"
         >
-          Engineering student building software systems and exploring different
-          areas of technology through practical projects.
+          Building defensive systems & automated security tooling
         </motion.p>
-
-        {/* Supporting line */}
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
+        
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-sm text-[var(--text-muted)] max-w-md mx-auto mb-12"
+          className="w-full max-w-3xl bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-6 mb-12 text-left shadow-[0_0_30px_rgba(0,255,140,0.15)] mx-auto font-mono"
         >
-          Focused on learning by building and understanding how systems work in
-          practice.
-        </motion.p>
+          <div className="flex gap-2 mb-6">
+            <div className="w-3 h-3 rounded-full bg-[var(--accent-red)]"></div>
+            <div className="w-3 h-3 rounded-full bg-[var(--accent-yellow)]"></div>
+            <div className="w-3 h-3 rounded-full bg-[var(--accent-green)]"></div>
+          </div>
+          <div className="space-y-4 text-sm md:text-base">
+            <div>
+              <p><span className="text-[var(--accent-green)]">$</span> <span className="text-[var(--accent-red)]">whoami</span></p>
+              <p className="text-gray-300 ml-4">&rarr; Security-focused Software Engineer</p>
+            </div>
+            <div>
+              <p><span className="text-[var(--accent-green)]">$</span> <span className="text-[var(--accent-red)]">cat</span> specialization.txt</p>
+              <p className="text-gray-300 ml-4"><span className="text-[var(--accent-cyan)]">&#x2B22;</span> Application Security</p>
+              <p className="text-gray-300 ml-4"><span className="text-[var(--accent-cyan)]">&lt;/&gt;</span> Secure Backend Systems</p>
+              <p className="text-gray-300 ml-4"><span className="text-[var(--accent-cyan)]">&#x2B22;</span> Cloud Security & DevSecOps</p>
+            </div>
+            <div>
+              <p><span className="text-[var(--accent-green)]">$</span> <span className="text-[var(--accent-red)]">ls</span> -la achievements/</p>
+              <p className="text-[var(--accent-yellow)] ml-4">&rarr; Hack KRMU 5.0 Winner (Feb 2026)</p>
+            </div>
+            <div>
+              <p><span className="text-[var(--accent-green)]">$</span> <span className="animate-blink">_</span></p>
+            </div>
+          </div>
+        </motion.div>
 
-        {/* CTA Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-wrap items-center justify-center gap-3"
+          className="flex flex-wrap items-center justify-center gap-6"
         >
           <Link
             href="/work"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[var(--accent-blue)] text-white text-sm font-semibold hover:bg-blue-400 transition-colors duration-200 shadow-lg shadow-blue-500/20"
+            className="px-8 py-4 rounded border border-[var(--accent-green)] text-[var(--accent-green)] font-bold hover:bg-[var(--accent-green)] hover:text-[#121212] transition-colors"
           >
             View Projects
           </Link>
           <a
-            href="/MUKUL_YADAV_BMU.pdf"
-            download
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[var(--bg-card)] text-[var(--text-secondary)] text-sm font-semibold border border-[var(--border)] hover:text-white hover:border-[var(--accent-blue)]/50 transition-all duration-200"
-          >
-            <FiDownload size={15} />
-            Download Resume
-          </a>
-          <a
             href="https://github.com/mukulyadavbmu"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[var(--bg-card)] text-[var(--text-secondary)] text-sm font-semibold border border-[var(--border)] hover:text-white hover:border-[var(--accent-blue)]/50 transition-all duration-200"
+            className="px-8 py-4 rounded border border-[var(--accent-cyan)] text-[var(--accent-cyan)] font-bold hover:bg-[var(--accent-cyan)] hover:text-[#121212] transition-colors flex items-center gap-2"
           >
-            <FiGithub size={15} />
-            GitHub
+            <FiGithub size={20} /> GitHub
           </a>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[var(--bg-card)] text-[var(--text-secondary)] text-sm font-semibold border border-[var(--border)] hover:text-white hover:border-[var(--accent-blue)]/50 transition-all duration-200"
+          <a
+            href="https://linkedin.com/in/mukul-yadav-b0a714271"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-4 rounded border border-[var(--accent-cyan)] text-[var(--accent-cyan)] font-bold hover:bg-[var(--accent-cyan)] hover:text-[#121212] transition-colors flex items-center gap-2"
           >
-            Contact
-          </Link>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1.2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-            className="text-[var(--text-muted)]"
+            <FiLinkedin size={20} /> LinkedIn
+          </a>
+          <a
+            href="/MUKUL_YADAV_BMU.pdf"
+            download
+            className="px-8 py-4 rounded border border-[var(--text-secondary)] text-[var(--text-secondary)] font-bold hover:bg-[var(--text-secondary)] hover:text-[#121212] transition-colors flex items-center gap-2"
           >
-            <FiArrowDown size={20} />
-          </motion.div>
+            <FiDownload size={20} /> Resume
+          </a>
         </motion.div>
       </div>
     </section>

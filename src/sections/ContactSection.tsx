@@ -23,8 +23,8 @@ const contactLinks = [
     {
         icon: FiLinkedin,
         label: "LinkedIn",
-        value: "linkedin.com/in/mukulyadav",
-        href: "https://linkedin.com/in/mukulyadav",
+        value: "linkedin.com/in/mukul-yadav-b0a714271",
+        href: "https://www.linkedin.com/in/mukul-yadav-b0a714271",
         color: "text-cyan-400",
     },
 ];
@@ -50,7 +50,6 @@ export default function ContactSection() {
             <SectionHeader
                 label="Contact"
                 title="Let's connect."
-                subtitle="Open to internship opportunities, collaborations, and conversations about engineering. Reach out via any channel below."
             />
 
             <div className="grid md:grid-cols-2 gap-12">
