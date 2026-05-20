@@ -1,107 +1,154 @@
-# Mukul Yadav — Portfolio Website
+# Mukul Yadav — Security Engineer Portfolio
 
-A modern, professional portfolio website built with **Next.js 16**, **TailwindCSS 4**, and **Framer Motion**.
+A polished, content-driven portfolio built with **Next.js 16**, **TypeScript**, **Tailwind CSS 4**, and **Framer Motion**. The site is designed as a static export, which makes it straightforward to publish to **GitHub Pages** or any other static host.
+
+## Highlights
+
+- App Router architecture with strong SEO metadata and Open Graph support
+- Static export output for simple GitHub Pages deployment
+- Animated hero, featured work, skills, credibility, timeline, and CTA sections
+- Project data sourced from real GitHub repositories and portfolio content only
+- Lightweight analytics with optional GA4 tracking
+- Resume download and mailto-based contact flow with no backend required
 
 ## Tech Stack
 
 | Technology | Purpose |
 |---|---|
-| Next.js 16 (App Router) | Framework, routing, SSR |
-| TailwindCSS 4 | Styling |
-| Framer Motion | Animations & scroll effects |
-| React Icons | Icon library |
+| Next.js 16 | App Router, static export, routing, metadata |
 | TypeScript | Type safety |
+| Tailwind CSS 4 | Styling and layout |
+| Framer Motion | Motion and section reveal effects |
+| React Icons | Iconography |
+| Google Analytics 4 | Optional privacy-aware event tracking |
+
+## What’s Inside
+
+- **Hero** with strong positioning and CTA buttons
+- **Featured work** with project highlights and repository links
+- **About** section with concise background and context
+- **Skills** grouped by category instead of generic percentage bars
+- **Credibility** and **timeline** sections to show real progress and milestones
+- **Resume** and **contact** sections for direct follow-up
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js v18+
+- Node.js 20+ recommended, Node.js 22 matches the GitHub Actions workflow
 - npm
+
+### Install
+
+```bash
+npm install
+```
 
 ### Run Locally
 
 ```bash
-cd portfolio-temp
-npm install
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Build for Production
+### Build Locally
 
 ```bash
 npm run build
+```
+
+For the GitHub Pages build path used by the deployment workflow:
+
+```bash
+npm run build:pages
+```
+
+### Start a Production Server
+
+```bash
 npm run start
 ```
 
-## Project Structure
+## Environment Variables
 
-```
-src/
-├── app/
-│   ├── layout.tsx          # Root layout + metadata
-│   ├── page.tsx            # Main page (assembles all sections)
-│   └── globals.css         # Design tokens + global styles
-├── components/
-│   ├── layout/
-│   │   ├── Navbar.tsx      # responsive navbar with scroll blur
-│   │   └── Footer.tsx      # footer with nav links + socials
-│   └── ui/
-│       ├── ProjectCard.tsx      # animated project card
-│       ├── ArchitectureFlow.tsx # animated system architecture diagram
-│       └── SectionUI.tsx        # SectionWrapper, SectionHeader, SkillTag
-├── sections/               # One file per portfolio section
-│   ├── HeroSection.tsx
-│   ├── TechStripSection.tsx
-│   ├── AboutSection.tsx
-│   ├── EngineeringApproachSection.tsx
-│   ├── SkillsSection.tsx
-│   ├── ProjectsSection.tsx
-│   ├── ArchitectureSection.tsx
-│   ├── ExploringSection.tsx
-│   ├── GitHubSection.tsx
-│   ├── ResumeSection.tsx
-│   └── ContactSection.tsx
-└── data/
-    ├── projects.ts         # Project data (sourced from GitHub only)
-    └── skills.ts           # Skills data (verified from repos + resume)
+Copy [.env.example](.env.example) to `.env.local` and fill in the values you want to use.
+
+Required only if you want analytics and a canonical site URL:
+
+```bash
+NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+NEXT_PUBLIC_SITE_URL=https://mukulyadav.dev
 ```
 
-## Portfolio Sections
+Notes:
 
-1. **Hero** — Name, tagline, CTA buttons, animated dot grid background
-2. **Tech Strip** — Scrolling technology tag strip
-3. **About** — Honest bio + stat cards
-4. **Engineering Approach** — Learning mindset and systems thinking
-5. **Skills** — Tag-based skill categories (no percentage bars)
-6. **Selected Work** — 4 real GitHub projects with technical highlights
-7. **System Architecture** — Animated flow diagram (User → Frontend → API → Server → DB)
-8. **Currently Exploring** — Active learning areas
-9. **GitHub** — Repository cards + profile link
-10. **Resume** — PDF preview + download button (MUKUL_YADAV_BMU.pdf)
-11. **Contact** — Email, GitHub, LinkedIn + contact form
-
-## Content Policy
-
-All content is sourced strictly from:
-- GitHub: https://github.com/mukulyadavbmu (repositories, READMEs)
-- Resume: MUKUL_YADAV_BMU.pdf
-
-No fabricated internships, invented experience, or exaggerated skills.
+- GA4 tracking is disabled in development and only loads in production when `NEXT_PUBLIC_GA_ID` is set.
+- Contact form submissions open the user’s email client with a prefilled message; there is no server-side form handler.
 
 ## Deployment
 
-Deploy to [Vercel](https://vercel.com) (recommended for Next.js):
+### GitHub Pages
 
-1. Push this folder to a GitHub repo
-2. Import into Vercel
-3. Deploy — zero configuration needed
+This repository includes [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml) for automatic publishing to GitHub Pages on pushes to `master`.
+
+The workflow:
+
+1. Installs dependencies with `npm ci`
+2. Builds the static site with `npm run build:pages`
+3. Uploads the `out/` folder as the Pages artifact
+4. Deploys it with GitHub Pages
+
+If you are using a repository subpath on GitHub Pages, update the base path in [next.config.ts](next.config.ts) to match the repository name.
+
+### Vercel
+
+The project also works well on Vercel. Import the repository, add any environment variables you need, and deploy.
+
+## Project Structure
+
+```text
+src/
+├── app/
+│   ├── layout.tsx          # Root layout, metadata, fonts, analytics
+│   ├── page.tsx            # Home page composition
+│   ├── contact/            # Contact page
+│   ├── resume/             # Resume page
+│   └── work/               # Projects listing
+├── components/
+│   ├── analytics/          # GA4 helpers and event tracking
+│   ├── layout/             # Navbar and footer
+│   ├── mdx/                # MDX rendering helpers
+│   └── ui/                 # Reusable UI components
+├── sections/               # Home page sections
+├── data/                   # Project and skills content
+├── hooks/                  # Client hooks
+└── lib/                    # Analytics, MDX, and asset path helpers
+```
+
+## Content Sources
+
+This portfolio is intentionally grounded in real material:
+
+- GitHub repositories and repository README files
+- Resume content from `public/MUKUL_YADAV_BMU.pdf`
+
+The site avoids fabricated internships, exaggerated claims, and placeholder project details.
 
 ## Customization
 
-- Update `src/data/projects.ts` to add/edit projects
-- Update `src/data/skills.ts` to edit skill categories
-- Replace `/public/MUKUL_YADAV_BMU.pdf` with your latest resume
-- Edit contact links in `src/sections/ContactSection.tsx` and `src/components/layout/Footer.tsx`
+- Update [src/data/projects.ts](src/data/projects.ts) to change featured work and project cards
+- Update [src/data/skills.ts](src/data/skills.ts) to adjust skill categories
+- Edit [src/sections/ContactSection.tsx](src/sections/ContactSection.tsx) and [src/components/layout/Footer.tsx](src/components/layout/Footer.tsx) for contact links
+- Replace [public/MUKUL_YADAV_BMU.pdf](public/MUKUL_YADAV_BMU.pdf) with your latest resume
+- Update [next.config.ts](next.config.ts) if your deployment base path changes
+
+## Troubleshooting
+
+- If the build fails on an older Node version, switch to Node 20+ or Node 22.
+- If GitHub Pages assets load incorrectly, confirm the `basePath` in [next.config.ts](next.config.ts) matches the repository name.
+- If analytics do not appear, verify that `NEXT_PUBLIC_GA_ID` is set and that you are testing a production build.
+
+## License
+
+No license has been added yet. Add one before distributing the project publicly if you want others to reuse the code.

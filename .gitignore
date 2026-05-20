@@ -17,12 +17,33 @@
 /.next/
 /out/
 
+# local workspace clutter
+/.vscode/
+/.idea/
+*.code-workspace
+*.swp
+*.swo
+*.tmp
+*.bak
+
 # production
 /build
 
 # misc
 .DS_Store
+Thumbs.db
+desktop.ini
 *.pem
+
+# scratch files and leftover exports
+portfolio-temp/
+Pasted markdown.md
+Pasted text (2).txt
+
+# caches
+.cache/
+.turbo/
+.eslintcache
 
 # debug
 npm-debug.log*
