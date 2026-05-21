@@ -64,8 +64,8 @@ export default function CredibilitySection() {
 
         {/* ── Achievements ───────────────────────────── */}
         <div>
-          <h3 className="text-xl font-bold text-[var(--accent-yellow)] mb-8 flex items-center gap-2">
-            <span className="text-[var(--accent-green)]">&gt;</span> achievements/
+          <h3 className="text-xl font-bold text-white mb-8 border-b border-[var(--border)] pb-2 inline-block">
+            Milestones & Achievements
           </h3>
 
           {achievements.map((item, i) => (
@@ -75,17 +75,17 @@ export default function CredibilitySection() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="p-6 rounded-lg border border-[var(--accent-yellow)]/40 bg-[var(--bg-surface)] shadow-[0_0_20px_rgba(255,215,0,0.08)]"
+              className="p-6 rounded-lg border border-[var(--border)] bg-[var(--bg-surface)] hover:border-[var(--text-secondary)] transition-colors"
             >
               <div className="flex items-start gap-4 mb-4">
-                <div className="w-12 h-12 rounded-lg bg-[var(--accent-yellow)]/10 border border-[var(--accent-yellow)]/30 flex items-center justify-center shrink-0">
-                  <FiAward size={22} className="text-[var(--accent-yellow)]" />
+                <div className="w-12 h-12 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] flex items-center justify-center shrink-0">
+                  <FiAward size={22} className="text-white" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-xl leading-tight mb-1">
+                  <h4 className="font-bold text-white text-lg leading-tight mb-1">
                     {item.title}
                   </h4>
-                  <span className="text-xs text-[var(--accent-yellow)] font-mono">
+                  <span className="text-xs text-gray-500 font-mono">
                     {item.date}
                   </span>
                 </div>
@@ -99,7 +99,7 @@ export default function CredibilitySection() {
                 {item.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-[10px] px-2 py-1 bg-black/50 text-gray-400 border border-[var(--border-subtle)] rounded uppercase tracking-widest"
+                    className="text-[10px] px-2 py-1 bg-[var(--bg-primary)] text-gray-400 border border-[var(--border-subtle)] rounded uppercase tracking-widest"
                   >
                     {tag}
                   </span>
@@ -107,14 +107,6 @@ export default function CredibilitySection() {
               </div>
             </motion.div>
           ))}
-
-          {/* Encouragement note */}
-          <div className="mt-8 p-4 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)]">
-            <p className="text-xs text-gray-500 font-mono leading-relaxed">
-              <span className="text-[var(--accent-green)]">// </span>
-              Currently building toward more competitive milestones — CTF participation, open source contributions, and deeper security research.
-            </p>
-          </div>
         </div>
       </div>
     </section>

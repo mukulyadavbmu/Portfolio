@@ -91,7 +91,7 @@ export const certifications: Certification[] = [
   {
     title: "Google Cybersecurity Certificate",
     issuer: "Google / Coursera",
-    date: "2024",
+    date: "2025",
     certificateFile: "/certificates/google-cybersecurity-certificate.pdf",
     status: "earned",
     description:
@@ -100,7 +100,7 @@ export const certifications: Certification[] = [
   {
     title: "IBM Cybersecurity Analyst Professional Certificate",
     issuer: "IBM / Coursera",
-    date: "2024",
+    date: "2025",
     certificateFile: "/certificates/ibm-professional-certificate.pdf",
     status: "earned",
     description:
@@ -109,7 +109,7 @@ export const certifications: Certification[] = [
   {
     title: "IBM & ISC2 — Cybersecurity Specialization",
     issuer: "IBM & ISC2 / Coursera",
-    date: "2024",
+    date: "2025",
     certificateFile: "/certificates/ibm-isc2-certificate.pdf",
     status: "earned",
     description:
@@ -118,7 +118,7 @@ export const certifications: Certification[] = [
   {
     title: "IoT Security Certificate",
     issuer: "Coursera",
-    date: "2024",
+    date: "2025",
     certificateFile: "/certificates/iot-security-certificate.pdf",
     status: "earned",
     description:
@@ -158,43 +158,35 @@ export interface TimelineItem {
 
 export const timeline: TimelineItem[] = [
   {
+    period: "2023 — Present",
+    title: "B.Tech Computer Science — BML Munjal University",
+    description:
+      "Pursuing Computer Science Engineering at BML Munjal University with a self-directed specialization in application security, backend systems, and practical tooling. Hackathon winner and active builder.",
+    tags: ["Education", "BML Munjal", "Computer Science"],
+    type: "education",
+  },
+  {
+    period: "2025",
+    title: "Cybersecurity Intern — UptoSkills",
+    description:
+      "6-week practical web application security internship. Conducted manual penetration testing, reconnaissance, and vulnerability assessments on authorized scoped domains (Flipkart, *.payzippy.com).",
+    tags: ["Internship", "Security Operations", "Web App Sec"],
+    type: "internship",
+  },
+  {
+    period: "2025",
+    title: "Professional Cybersecurity Certifications",
+    description:
+      "Earned foundational and intermediate certifications from Google and IBM/ISC2, establishing a formal knowledge base in security operations, threat intelligence, and compliance.",
+    tags: ["Certification", "Google", "IBM", "ISC2"],
+    type: "cert",
+  },
+  {
     period: "Feb 2026",
     title: "Won HACK KRMU 5.0",
     description:
       "Placed first at Hack KRMU 5.0 hackathon at KR Mangalam University. Competed against multi-college teams — built and presented a working prototype under a strict time limit.",
     tags: ["Hackathon", "Winner", "Competitive Programming"],
     type: "milestone",
-  },
-  {
-    period: "2024",
-    title: "Google Cybersecurity Certificate",
-    description:
-      "Completed Google's 8-course professional cybersecurity program on Coursera. Topics: threat analysis, network security, SIEM operations, Python security scripting, and incident response.",
-    tags: ["Certification", "Google", "Coursera"],
-    type: "cert",
-  },
-  {
-    period: "2024",
-    title: "IBM Cybersecurity & ISC2 Certifications",
-    description:
-      "Completed IBM Professional Certificate and the IBM & ISC2 joint cybersecurity specialization. Covered security operations, threat intelligence, governance, access controls, and compliance.",
-    tags: ["Certification", "IBM", "ISC2"],
-    type: "cert",
-  },
-  {
-    period: "2024",
-    title: "IoT Security Certificate",
-    description:
-      "Completed IoT security certification covering embedded device authentication, network segmentation, and IoT-specific threat modeling.",
-    tags: ["Certification", "IoT", "Security"],
-    type: "cert",
-  },
-  {
-    period: "2024 — Present",
-    title: "B.Tech Computer Science — BML Munjal University",
-    description:
-      "Pursuing Computer Science Engineering at BML Munjal University with a self-directed specialization in application security, backend systems, and practical tooling. Hackathon winner and active builder.",
-    tags: ["Education", "BML Munjal", "Computer Science"],
-    type: "education",
   },
 ];

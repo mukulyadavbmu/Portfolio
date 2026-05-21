@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import HeroSection from "@/sections/HeroSection";
 import HomeFeaturedWork from "@/sections/HomeFeaturedWork";
 import SkillsCategorySection from "@/sections/SkillsCategorySection";
+import SecurityExperienceSection from "@/sections/SecurityExperienceSection";
 import CredibilitySection from "@/sections/CredibilitySection";
 import TimelineSection from "@/sections/TimelineSection";
 import AboutSection from "@/sections/AboutSection";
@@ -34,6 +35,7 @@ export default function Home() {
       <HomeFeaturedWork />
       <AboutSection />
       <SkillsCategorySection />
+      <SecurityExperienceSection />
       <CredibilitySection />
       <TimelineSection />
       <HomeCTASection />
