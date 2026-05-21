@@ -82,6 +82,7 @@ export interface Certification {
   issuer: string;
   date: string;           // e.g. "Jan 2025" or "In Progress"
   credentialUrl?: string;
+  certificateFile?: string; // path in /public/certificates/
   status: "earned" | "in-progress" | "planned";
   description?: string;
 }
@@ -91,15 +92,37 @@ export const certifications: Certification[] = [
     title: "Google Cybersecurity Certificate",
     issuer: "Google / Coursera",
     date: "2024",
+    certificateFile: "/certificates/google-cybersecurity-certificate.pdf",
     status: "earned",
-    description: "Foundations of cybersecurity, threat analysis, network security, and security operations.",
+    description:
+      "8-course professional program covering threat analysis, network security, SIEM operations, Python automation, and security incident response.",
   },
   {
-    title: "Security+",
-    issuer: "CompTIA",
-    date: "In Progress",
-    status: "in-progress",
-    description: "Industry baseline for security practitioners covering threats, vulnerabilities, and enterprise controls.",
+    title: "IBM Cybersecurity Analyst Professional Certificate",
+    issuer: "IBM / Coursera",
+    date: "2024",
+    certificateFile: "/certificates/ibm-professional-certificate.pdf",
+    status: "earned",
+    description:
+      "Professional-level program covering security operations, threat intelligence, application security, and incident response workflows.",
+  },
+  {
+    title: "IBM & ISC2 — Cybersecurity Specialization",
+    issuer: "IBM & ISC2 / Coursera",
+    date: "2024",
+    certificateFile: "/certificates/ibm-isc2-certificate.pdf",
+    status: "earned",
+    description:
+      "Joint IBM and ISC2 specialization covering security frameworks, governance, access controls, and compliance fundamentals.",
+  },
+  {
+    title: "IoT Security Certificate",
+    issuer: "Coursera",
+    date: "2024",
+    certificateFile: "/certificates/iot-security-certificate.pdf",
+    status: "earned",
+    description:
+      "Focused study of Internet of Things security architecture, device authentication, network segmentation, and embedded systems threat modeling.",
   },
 ];
 
@@ -117,33 +140,9 @@ export const achievements: Achievement[] = [
   {
     title: "Won HACK KRMU 5.0",
     context:
-      "Winner of Hack KRMU 5.0 hackathon at KR Mangalam University, demonstrating rapid prototyping and problem-solving skills under pressure.",
+      "First place at Hack KRMU 5.0, the annual hackathon organized by KR Mangalam University. Competed against teams across multiple colleges, demonstrating rapid prototyping, system design, and problem-solving under time pressure.",
     date: "Feb 2026",
-    tags: ["Hackathon", "Winner", "Prototyping"],
-  },
-  {
-    title: "Built VulnForge — DAST Scanner from scratch",
-    context:
-      "Independently architected and shipped a full dynamic analysis platform that identifies 11+ vulnerability classes using Playwright network interception.",
-    date: "Feb 2026",
-    proof: "https://github.com/mukulyadavbmu/VULNFORGE",
-    tags: ["Security Tooling", "TypeScript", "Playwright"],
-  },
-  {
-    title: "Built SandHawk — URL Investigation Sandbox",
-    context:
-      "Designed an ephemeral Docker-based sandbox for safe detonation of suspicious URLs, with IOC extraction and phishing heuristics — solving a real SOC analyst workflow problem.",
-    date: "May 2026",
-    proof: "https://github.com/mukulyadavbmu/SandHawk",
-    tags: ["Defensive Security", "Python", "Docker"],
-  },
-  {
-    title: "Shipped Eduvora to Production",
-    context:
-      "Deployed a complex finance web application (loan simulations, amortization calculators) to production on Vercel, achieving fast Lighthouse performance scores.",
-    date: "Apr 2026",
-    proof: "https://eduvora-tau.vercel.app",
-    tags: ["Production", "React", "Vite"],
+    tags: ["Hackathon", "1st Place", "Competitive", "KR Mangalam University"],
   },
 ];
 
@@ -154,56 +153,48 @@ export interface TimelineItem {
   title: string;
   description: string;
   tags: string[];
-  type: "project" | "education" | "cert" | "milestone";
+  type: "education" | "cert" | "milestone" | "internship";
 }
 
 export const timeline: TimelineItem[] = [
   {
-    period: "May 2026",
-    title: "SandHawk: Defensive URL Sandbox",
+    period: "Feb 2026",
+    title: "Won HACK KRMU 5.0",
     description:
-      "Built an isolated, Docker-based phishing investigation tool. First project applying ephemeral container orchestration to a real security workflow.",
-    tags: ["Python", "FastAPI", "Docker", "Playwright"],
-    type: "project",
-  },
-  {
-    period: "Apr 2026",
-    title: "Eduvora: Production Deployment",
-    description:
-      "Shipped a React-based education finance platform to Vercel. First independently-deployed production app with real users.",
-    tags: ["React", "Vite", "Production"],
+      "Placed first at Hack KRMU 5.0 hackathon at KR Mangalam University. Competed against multi-college teams — built and presented a working prototype under a strict time limit.",
+    tags: ["Hackathon", "Winner", "Competitive Programming"],
     type: "milestone",
   },
   {
-    period: "Feb 2026",
-    title: "VulnForge: Automated DAST Platform",
-    description:
-      "Designed and shipped the first version of VulnForge — a security scanner that identifies CORS, SQLi, XSS, and IDOR vulnerabilities using live browser automation.",
-    tags: ["TypeScript", "Playwright", "Security"],
-    type: "project",
-  },
-  {
-    period: "Feb 2026",
-    title: "Hack KRMU 5.0 Winner",
-    description:
-      "Won the Hack KRMU 5.0 hackathon at KR Mangalam University out of many participating teams.",
-    tags: ["Hackathon", "Winner"],
-    type: "milestone",
-  },
-  {
-    period: "Jan 2025",
+    period: "2024",
     title: "Google Cybersecurity Certificate",
     description:
-      "Completed structured study of threat analysis, network security, and incident response foundations.",
-    tags: ["Certification", "Security Fundamentals"],
+      "Completed Google's 8-course professional cybersecurity program on Coursera. Topics: threat analysis, network security, SIEM operations, Python security scripting, and incident response.",
+    tags: ["Certification", "Google", "Coursera"],
     type: "cert",
   },
   {
-    period: "2024–Present",
-    title: "B.Tech CSE — BML Munjal University",
+    period: "2024",
+    title: "IBM Cybersecurity & ISC2 Certifications",
     description:
-      "Pursuing Computer Science Engineering with a self-directed focus on application security, systems, and practical tooling. Hackathon winner - Hack KRMU 5.0 (Feb 2026).",
-    tags: ["Education"],
+      "Completed IBM Professional Certificate and the IBM & ISC2 joint cybersecurity specialization. Covered security operations, threat intelligence, governance, access controls, and compliance.",
+    tags: ["Certification", "IBM", "ISC2"],
+    type: "cert",
+  },
+  {
+    period: "2024",
+    title: "IoT Security Certificate",
+    description:
+      "Completed IoT security certification covering embedded device authentication, network segmentation, and IoT-specific threat modeling.",
+    tags: ["Certification", "IoT", "Security"],
+    type: "cert",
+  },
+  {
+    period: "2024 — Present",
+    title: "B.Tech Computer Science — BML Munjal University",
+    description:
+      "Pursuing Computer Science Engineering at BML Munjal University with a self-directed specialization in application security, backend systems, and practical tooling. Hackathon winner and active builder.",
+    tags: ["Education", "BML Munjal", "Computer Science"],
     type: "education",
   },
 ];

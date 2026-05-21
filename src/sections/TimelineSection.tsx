@@ -4,17 +4,24 @@ import { motion } from "framer-motion";
 import { timeline } from "@/data/credibility";
 
 const typeColors: Record<string, string> = {
-  project: "border-[var(--accent-cyan)] text-[var(--accent-cyan)]",
-  milestone: "border-[var(--accent-green)] text-[var(--accent-green)]",
-  cert: "border-[var(--accent-yellow)] text-[var(--accent-yellow)]",
-  education: "border-[var(--accent-red)] text-[var(--accent-red)]",
+  milestone: "border-[var(--accent-yellow)] text-[var(--accent-yellow)]",
+  cert: "border-[var(--accent-cyan)] text-[var(--accent-cyan)]",
+  education: "border-[var(--accent-green)] text-[var(--accent-green)]",
+  internship: "border-[var(--accent-red)] text-[var(--accent-red)]",
 };
 
 const typeLabels: Record<string, string> = {
-  project: "Project",
   milestone: "Milestone",
   cert: "Certification",
   education: "Education",
+  internship: "Experience",
+};
+
+const dotColors: Record<string, string> = {
+  milestone: "bg-[var(--accent-yellow)] shadow-[0_0_10px_rgba(255,215,0,0.5)]",
+  cert: "bg-[var(--accent-cyan)] shadow-[0_0_10px_rgba(0,217,255,0.5)]",
+  education: "bg-[var(--accent-green)] shadow-[0_0_10px_rgba(0,255,140,0.5)]",
+  internship: "bg-[var(--accent-red)] shadow-[0_0_10px_rgba(255,62,62,0.5)]",
 };
 
 export default function TimelineSection() {
@@ -37,28 +44,30 @@ export default function TimelineSection() {
               className="relative pl-12"
             >
               {/* Dot */}
-              <div className="absolute left-[3px] top-1.5 w-[18px] h-[18px] rounded-full border-2 border-[var(--bg-primary)] bg-[var(--accent-green)] shadow-[0_0_10px_rgba(0,255,140,0.5)] z-10" />
+              <div className={`absolute left-[3px] top-1.5 w-[18px] h-[18px] rounded-full border-2 border-[var(--bg-primary)] z-10 ${dotColors[item.type] ?? "bg-gray-500"}`} />
 
               {/* Content */}
-              <div className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-6 shadow-[0_0_20px_rgba(0,255,140,0.05)] hover:border-[var(--accent-green)] hover:-translate-y-1 transition-all duration-300">
+              <div className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-6 shadow-[0_0_20px_rgba(0,0,0,0.3)] hover:border-[var(--accent-green)]/50 hover:-translate-y-1 transition-all duration-300">
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4 border-b border-[var(--border-subtle)] pb-4">
                   <div>
-                    <h3 className="font-bold text-white text-lg group-hover:text-[var(--accent-green)] transition-colors">{item.title}</h3>
+                    <h3 className="font-bold text-white text-lg">{item.title}</h3>
                     <span
                       className={`text-[10px] uppercase tracking-widest mt-1 block ${
                         typeColors[item.type] ?? "text-gray-400"
                       }`}
                     >
-                      [{typeLabels[item.type]}]
+                      [{typeLabels[item.type] ?? item.type}]
                     </span>
                   </div>
-                  <span className="text-xs text-[var(--accent-cyan)] shrink-0 px-3 py-1 bg-[#121212] border border-[var(--border-subtle)] rounded">{item.period}</span>
+                  <span className="text-xs text-[var(--accent-cyan)] shrink-0 px-3 py-1 bg-[#121212] border border-[var(--border-subtle)] rounded">
+                    {item.period}
+                  </span>
                 </div>
-                
+
                 <p className="text-sm text-gray-400 leading-relaxed mb-4">
                   {item.description}
                 </p>
-                
+
                 <div className="flex flex-wrap gap-2">
                   {item.tags.map((tag) => (
                     <span

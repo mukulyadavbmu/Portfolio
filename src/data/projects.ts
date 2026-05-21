@@ -84,12 +84,12 @@ export const projects: Project[] = [
   },
   {
     id: "portfolio",
-    title: "Cyber-Portfolio",
+    title: "Portfolio Website",
     description:
-      "This fully-responsive, terminal-themed professional portfolio engineered with Next.js App Router and Framer Motion. Configured for automatic deployment to GitHub Pages, static assets optimization, and privacy-safe GA4 tracking.",
+      "This portfolio — built with Next.js App Router, Framer Motion animations, and a terminal-themed design system. Statically exported for GitHub Pages with privacy-safe GA4 analytics and automated CI/CD deployment.",
     highlight:
-      "Modern Static-Export Portfolio",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "GitHub Actions"],
+      "Terminal-Themed Static Portfolio",
+    tags: ["Next.js", "TypeScript", "Framer Motion", "GitHub Actions"],
     githubUrl: "https://github.com/mukulyadavbmu/Portfolio",
     imageUrl: "https://opengraph.githubassets.com/1/mukulyadavbmu/Portfolio",
     featured: false,

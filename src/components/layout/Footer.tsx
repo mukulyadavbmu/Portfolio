@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { FiGithub, FiLinkedin } from "react-icons/fi";
+import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 
 const footerNav = [
-  { label: "Work", href: "/work" },
+  { label: "Projects", href: "/work" },
   { label: "Resume", href: "/resume" },
   { label: "Contact", href: "/contact" },
 ];
@@ -18,6 +18,11 @@ const socialLinks = [
     href: "https://www.linkedin.com/in/mukul-yadav-b0a714271",
     icon: FiLinkedin,
   },
+  {
+    label: "Email",
+    href: "mailto:mukuly243@gmail.com",
+    icon: FiMail,
+  },
 ];
 
 export function Footer() {
@@ -30,12 +35,14 @@ export function Footer() {
         <div>
           <Link
             href="/"
-            className="text-sm font-semibold uppercase tracking-widest text-[var(--text-primary)]"
+            className="inline-flex items-center gap-1 font-mono text-sm font-bold tracking-widest text-[var(--text-primary)]"
           >
-            MY<span className="text-[var(--accent-blue)]">.</span>
+            <span className="text-[var(--accent-green)]">&gt;_</span>
+            <span>mukul</span>
+            <span className="text-[var(--accent-cyan)]">.sh</span>
           </Link>
-          <p className="mt-1 text-xs text-[var(--text-muted)]">
-            © {year} Mukul Yadav · Security Engineer
+          <p className="mt-1 text-xs text-[var(--text-muted)] font-mono">
+            © {year} Mukul Yadav · Security Engineer · BML Munjal University
           </p>
         </div>
 
@@ -46,7 +53,7 @@ export function Footer() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+                className="text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors font-mono"
               >
                 {link.label}
               </Link>
@@ -59,10 +66,10 @@ export function Footer() {
               <a
                 key={label}
                 href={href}
-                target="_blank"
+                target={href.startsWith("mailto") ? undefined : "_blank"}
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+                className="text-[var(--text-muted)] hover:text-[var(--accent-green)] transition-colors"
               >
                 <Icon size={15} />
               </a>

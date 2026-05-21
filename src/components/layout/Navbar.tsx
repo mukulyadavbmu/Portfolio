@@ -6,11 +6,11 @@ import Link from "next/link";
 const navLinks = [
   { label: "About", href: "/#about" },
   { label: "Skills", href: "/#skills" },
-  { label: "Experience", href: "/#experience" },
-  { label: "Education", href: "/#experience" },
-  { label: "Certifications", href: "/#certifications" },
+  { label: "Timeline", href: "/#experience" },
+  { label: "Credentials", href: "/#certifications" },
   { label: "Projects", href: "/work" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Resume", href: "/resume" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Navbar() {
@@ -28,12 +28,12 @@ export function Navbar() {
           &gt;_developer.sh <span className="text-gray-500 font-normal text-sm md:text-base">· mukulyadav</span>
         </Link>
 
-        <div className="hidden md:flex gap-8">
+        <div className="hidden md:flex gap-6">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="text-white hover:text-[var(--accent-green)] transition-colors"
+              className="text-sm text-white hover:text-[var(--accent-green)] transition-colors"
             >
               {link.label}
             </Link>
